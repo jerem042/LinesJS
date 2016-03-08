@@ -188,18 +188,6 @@ var LinesJS = (function () {
 				canvas.webkitRequestFullscreen();
 				document.addEventListener("webkitfullscreenchange", my.fullscreenchange, false);
 			}
-
-			// DEBUG
-			//console.log('window.innerHeight: ' + window.innerHeight);
-			//canvas.style.width = '100%';
-			//canvas.style.height = '100%';
-
-			/*
-			var xres = window.getComputedStyle(canvas, null).getPropertyValue('width');
-			var yres = window.getComputedStyle(canvas, null).getPropertyValue('height');
-			console.log("xres: " + xres + ", yres: " + yres);  // 400px, 400px
-			console.log("width: " + ctx.canvas.width + ", height: " + ctx.canvas.height);  // 400x400
-			//*/
 		}
 	};
 
@@ -207,7 +195,6 @@ var LinesJS = (function () {
 	my.fullscreenchange = function () {
 		if (fullmode == false) {
 			// entering fullscreen
-			//console.log('entering fullscreen');  // DEBUG
 			fullmode = true;
 			// backup canvas
 			bu.width = ctx.canvas.width;
@@ -217,8 +204,6 @@ var LinesJS = (function () {
 			bu.lineWidth = my.lineWidth;
 			// resize canvas to fullscreen
 			var winW = window.innerWidth, winH = window.innerHeight;
-			//console.log('window.innerWidth: ' + winW);  // DEBUG
-			//console.log('window.innerHeight: ' + winH); // DEBUG
 			canvas.style.width = winW + 'px';
 			canvas.style.height = winH + 'px';
 			ctx.canvas.width = winW;
@@ -226,14 +211,12 @@ var LinesJS = (function () {
 			my.skipMin = Math.floor(winW / 160); // 160
 			my.skipMax = Math.floor(winW / 60);  // 40
 			my.lineWidth = my.lineWidthFS;
-			//console.log('skipMin: ' + my.skipMin + ', skipMax: ' + my.skipMax);  // DEBUG
 			// restart lines
 			my.clear();
 			my.resetLine();
 		}
 		else {
 			// exiting fullscreen
-			//console.log('exiting fullscreen');  // DEBUG
 			fullmode = false;
 			// restore canvas
 			canvas.style.width = bu.width + 'px';
