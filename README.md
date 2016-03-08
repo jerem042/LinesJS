@@ -30,7 +30,7 @@ The code creates a single object **LinesJS** with methods that you may call.  Yo
 
 You may optionally set these other parameters prior to calling _setup()_. If you don't set these, then the default values will be used.
 
-```js
+```html
 <script>
 	// set optional parameters first
 	LinesJS.skipMin =  5;  // lines skip between min and max pixels
