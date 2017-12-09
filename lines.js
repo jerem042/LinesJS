@@ -2,6 +2,7 @@
  * Lines.js
  * Copyright (c) 2016 Carl Gorringe
  * http://carl.gorringe.org/
+ * https://github.com/cgorringe/LinesJS
  **/
 
 var LinesJS = (function () {

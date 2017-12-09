@@ -6,7 +6,7 @@ This is the Javascript version of my ***Lines!*** app.  It's like a screensaver 
 
 Visit my [demo page](http://carl.gorringe.org/pub/code/javascript/LinesJS/) to see it run!
 
-[![](img/badge_demosite.png)](http://carl.gorringe.org/pub/code/javascript/LinesJS/)
+[![](img/badge_demo.png)](http://carl.gorringe.org/pub/code/javascript/LinesJS/)
 
 Also check out [Lines-watchOS](https://github.com/cgorringe/Lines-watchOS), the Objective-C version for the Apple Watch.
 
