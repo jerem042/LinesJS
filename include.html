@@ -1,0 +1,21 @@
+<h2>LinesJS</h2>
+<p>
+This is a demo of a Javascript version of my <strong>Lines!</strong> app.  Watch as the lines move and bounce off the walls, as they smoothly transition between multiple colors.</p> 
+<p>
+	<a href="https://github.com/cgorringe/LinesJS" target="_blank" class="animate"><img src="img/badge_github.png" alt="Source Code on Github"></a>
+</p>
+<div>
+	<button onclick="javascript:LinesJS.start();">Start</button>
+	<button onclick="javascript:LinesJS.stop();">Stop</button>
+	<button onclick="javascript:LinesJS.reset();">Reset</button>
+	<button onclick="javascript:LinesJS.clear();">Clear</button>
+	<button onclick="javascript:LinesJS.fullscreen();">Full Screen</button>
+	<div class="framed" style="margin-top:4px; width:796px; height:416px;">
+		<canvas id="canvasId" width="780" height="400" style="background-color:#000;"></canvas>
+	</div>
+</div>
+<script src="lines.js"></script>
+<script>
+  LinesJS.setup("canvasId");
+</script>
+<br><br>
