@@ -1,7 +1,4 @@
 .DS_Store
 *~
 .*~
-xcuserdata
-xuserdata
-profile
-build/
+node_modules

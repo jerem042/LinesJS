@@ -1,0 +1,25 @@
+{
+  "name": "lines-demo",
+  "version": "1.0.0",
+  "description": "Lines move and bounce off the canvas edge, as they smoothly transition between multiple colors.",
+  "main": "lines.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgorringe/LinesJS.git"
+  },
+  "keywords": [
+    "lines",
+    "screensaver",
+    "canvas",
+    "demo"
+  ],
+  "author": "Carl Gorringe (http://carl.gorringe.org)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgorringe/LinesJS/issues"
+  },
+  "homepage": "https://github.com/cgorringe/LinesJS#readme"
+}

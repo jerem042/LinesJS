@@ -16,23 +16,22 @@
 <body>
 	<h2>LinesJS</h2>
 	<p>Testing the Lines JS app using a canvas.</p><br>
-	<button onclick="javascript:LinesJS.start();">Start</button>
-	<button onclick="javascript:LinesJS.stop();">Stop</button>
-	<button onclick="javascript:LinesJS.reset();">Reset</button>
-	<button onclick="javascript:LinesJS.clear();">Clear</button>
-	<button onclick="javascript:LinesJS.fullscreen();">Full Screen</button>
+	<button onclick="javascript:lines.start();">Start</button>
+	<button onclick="javascript:lines.stop();">Stop</button>
+	<button onclick="javascript:lines.reset();">Reset</button>
+	<button onclick="javascript:lines.clear();">Clear</button>
+	<button onclick="javascript:lines.fullscreen();">Full Screen</button>
 	<br>
-	<canvas id="canvasId" width="400" height="400"></canvas>
-
+	<canvas id="lines-canvas" width="400" height="400"></canvas>
 	<script src="lines.js"></script>
 	<script>
-		// set optional parameters first
-		LinesJS.skipMin =  5;
-		LinesJS.skipMax = 15;
-		LinesJS.numLines = 30;
-		LinesJS.timeInterval = 50;
-		// then call setup (required)
-		LinesJS.setup("canvasId");
+		var lines = new LinesJS({
+			canvasId: 'lines-canvas',
+			skipMin: 5,
+			skipMax: 15,
+			numLines: 30,
+			timeInterval: 50
+		});
 	</script>
 </body>
 </html>

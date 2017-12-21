@@ -18,33 +18,75 @@ Also check out [Lines-watchOS](https://github.com/cgorringe/Lines-watchOS), the 
 It's really simple to use.  Just insert a **canvas** tag and the **lines.js** javascript file somewhere into your HTML's body like so:
 
 ```html
-<canvas id="canvasId" width="400" height="400"></canvas>
+<canvas id="lines-canvas" width="400" height="400"></canvas>
 
 <script src="lines.js"></script>
 <script>
-	LinesJS.setup("canvasId");
+	var lines = new LinesJS({ canvasId: 'lines-canvas' });
 </script>
 
 ```
-The code creates a single object **LinesJS** with methods that you may call.  You must first call the `setup()` method with the id of your canvas, as shown above.
+The code assigns a **LinesJS** object to **lines** which has methods that you may call.  You must pass in the canvas id so that it knows where to draw.
 
-You may optionally set these other parameters prior to calling _setup()_. If you don't set these, then the default values will be used.
+You may optionally set additional parameters as shown below, or else the default values will be used.
 
-```html
-<script>
-	// set optional parameters first
-	LinesJS.skipMin =  5;  // lines skip between min and max pixels
-	LinesJS.skipMax = 15;
-	LinesJS.numLines = 30;
-	LinesJS.timeInterval = 50;  // milliseconds between frames
+```javascript
+var lines = new LinesJS({
+	canvasId: 'lines-canvas',
+	skipMin: 5,       // lines skip between min and max pixels
+	skipMax: 15,
+	numLines: 30,
+	timeInterval: 50  // milliseconds between frames
+});
 
-	// then call setup (which is required)
-	LinesJS.setup("canvasId");
-</script>
 ```
-Then call `LinesJS.start()` to start the lines animation, and `LinesJS.stop()` to pause it.  Calling _start()_ again will continue where it left off.  Other useful methods are `LinesJS.reset()` to reset the lines position and color, and `LinesJS.clear()` to clear the canvas area.
+Then call `lines.start()` to start the lines animation, and `.stop()` to pause it.  Calling _start()_ again will continue where it left off.  Other useful methods are `.reset()` to reset the lines position and color, and `.clear()` to clear the canvas area.
 
 All of these functions are demonstrated in the example **lines.html** file.
+
+
+## Install using NPM &amp; Browserify
+
+Using this method may be an extra step, but may be worth it if you're already using Node and wish to bundle all of your JavaScript into a single file for faster loading.
+
+First install [Browserify](http://browserify.org) for web support:
+
+```
+npm install -g browserify
+```
+Then install LinesJS which is called **lines-demo**:
+
+```
+npm install lines-demo
+```
+To use Browserify, you'll want to place all of your JavaScript code in a separate file, like so:
+
+```javascript
+// lines-test.js
+var LinesJS = require('lines-demo');
+window.lines = new LinesJS({
+	canvasId: 'lines-canvas',
+	skipMin: 5,
+	skipMax: 15,
+	numLines: 30,
+	timeInterval: 50
+});
+```
+Note the use of **window.lines** above, which will make sure that **lines** is scoped globally, but which can be named anything.
+
+Now generate your JavaScript bundle:
+
+```
+browserify lines-test.js > lines-bundle.js
+```
+And in your HTML, a single script tag to import the bundle:
+
+```html
+<script src="lines-bundle.js"></script>
+```
+
+
+Now you can call methods such as `lines.start()` to start the lines animation.  See examples in **lines.html**.
 
 _____
 

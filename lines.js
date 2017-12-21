@@ -1,14 +1,24 @@
 /**
- * Lines.js
- * Copyright (c) 2016 Carl Gorringe
- * http://carl.gorringe.org/
+ * lines.js
+ * Copyright (c) 2017 Carl Gorringe
  * https://github.com/cgorringe/LinesJS
  **/
 
-var LinesJS = (function () {
+if (typeof module !== 'undefined') module.exports = LinesJS;
+
+function LinesJS (my) {
+
+	// public defaults
+	if (typeof my === 'undefined') my = {};
+	if (!('skipMin'      in my)) my.skipMin      =  5;
+	if (!('skipMax'      in my)) my.skipMax      = 15;
+	if (!('numLines'     in my)) my.numLines     = 30;
+	if (!('timeInterval' in my)) my.timeInterval = 50;
+	if (!('lineWidth'    in my)) my.lineWidth    =  1;
+	if (!('lineWidthFS'  in my)) my.lineWidthFS  =  2;
 
 	// private vars
-	var my = {}, canvas, bgColor, ctx, timer, ready = false, 
+	var canvas, bgColor, ctx, timer,
 			// line positions
 			lx1, ly1, lx2, ly2, idx,
 			// skip values
@@ -18,14 +28,6 @@ var LinesJS = (function () {
 			skpR, skpG, skpB, curR, curG, curB, colCount = 0,
 			// fullscreen
 			fullmode = false, bu = {};
-
-	// public vars
-	my.skipMin =  5;
-	my.skipMax = 15;
-	my.numLines = 30;
-	my.timeInterval = 50;
-	my.lineWidth = 1;
-	my.lineWidthFS = 2;
 
 	// private methods
 	function randInt(min, max) {
@@ -38,20 +40,19 @@ var LinesJS = (function () {
 
 	// public methods
 	my.setup = function (canvasId) {
-		canvas = document.getElementById(canvasId);
-		bgColor = window.getComputedStyle(canvas, null).getPropertyValue('background-color');
-		ctx = canvas.getContext('2d');
-		//ctx.translate(0.5, 0.5);  // doesn't really improve anything
-		//ctx.imageSmoothingEnabled = false;  // doesn't do much
-		ctx.imageSmoothingEnabled = true;
-		lx1 = new Array(my.numLines);
-		ly1 = new Array(my.numLines);
-		lx2 = new Array(my.numLines);
-		ly2 = new Array(my.numLines);
-		idx = 0;
-		my.clear();
-		my.resetLine();
-		ready = true;
+		if (canvasId) {
+			canvas = document.getElementById(canvasId);
+			bgColor = window.getComputedStyle(canvas, null).getPropertyValue('background-color');
+			ctx = canvas.getContext('2d');
+			ctx.imageSmoothingEnabled = true;
+			lx1 = new Array(my.numLines);
+			ly1 = new Array(my.numLines);
+			lx2 = new Array(my.numLines);
+			ly2 = new Array(my.numLines);
+			idx = 0;
+			my.clear();
+			my.resetLine();
+		}
 	};
 
 	my.clear = function () {
@@ -160,11 +161,12 @@ var LinesJS = (function () {
 	};
 
 	my.start = function () {
-		if (ready) {
+		if (ctx) {
+			if (timer) clearTimeout(timer);
 			timer = setInterval(my.drawNext, my.timeInterval);
 		}
 		else {
-			alert("Call Lines.setup('canvasId') first!");
+			console.log("ERROR: LinesJS: Must set 'canvasId' in constructor, or call setup().");
 		}
 	};
 
@@ -233,6 +235,7 @@ var LinesJS = (function () {
 		}
 	};
 
+  // constructor
+  my.setup(my.canvasId);
 	return my;
-}());
-
+}
